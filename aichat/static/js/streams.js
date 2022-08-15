@@ -3,6 +3,8 @@ const CHANNEL = sessionStorage.getItem('room')
 const TOKEN = sessionStorage.getItem('token')
 let UID = Number(sessionStorage.getItem('UID'))
 
+let NAME = sessionStorage.getItem('name')
+
 const client = AgoraRTC.createClient({mode: 'rtc', codec: 'vp8'})
 
 let localTracks = []
@@ -47,7 +49,7 @@ let handleUserJoined = async (user, mediaType) => {
     await client.subscribe(user, mediaType)
 
     if(mediaType === 'video'){
-        let player = document.getElementById(`user-container=${user.UID}`)
+        let player = document.getElementById(`user-container-${user.UID}`)
 
         if (player != null){
             player.remove()
